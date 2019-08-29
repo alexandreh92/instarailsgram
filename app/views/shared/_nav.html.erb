@@ -1,9 +1,8 @@
 <nav class="navigation">
   <div class="navigation__column">
-    <a href="feed.html">
-      <!-- Master branch comment -->
+    <%= link_to feed_path do %>
       <%= image_tag 'logo.png' %>
-    </a>
+    <% end %>
   </div>
   <div class="navigation__column">
     <i class="fa fa-search"></i>
@@ -22,9 +21,9 @@
         </a>
       </li>
       <li class="navigation__list-item">
-        <a href="profile.html" class="navigation__link">
+        <%= link_to(profile_path(current_user), html_options = {class:"navigation__link"}) do %>
           <i class="fa fa-user-o fa-lg"></i>
-        </a>
+        <% end %>
       </li>
     </ul>
   </div>

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root "feed#index"
 
   get '/feed', to: 'feed#index'
+  resources :profile, only: [:show]
 
   resources :posts
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
