@@ -1,24 +1,32 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application is an Instagram clone, it's for studying purposes only.
 
-Things you may want to cover:
+## Ruby version
+```
+ruby 2.5.5p157
+```
 
-* Ruby version
+## System dependencies
+- [Yarn](https://yarnpkg.com)
+```
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update && sudo apt-get install yarn
+```
 
-* System dependencies
+- [GraphViz](http://graphviz.org/)
+```
+sudo apt-get install graphviz
+```
 
-* Configuration
+## Configuration
+```
+bundle install
+rake db:migrate
+```
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Database creation
+```
+rake db:migrate
+```
