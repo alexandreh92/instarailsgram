@@ -1,0 +1,18 @@
+<main id="edit-profile">
+  <div class="edit-profile__container">
+      <header class="edit-profile__header">
+          <div class="edit-profile__avatar-container">
+              
+          </div>
+          <h4 class="edit-profile__username">New Post</h4>
+      </header>
+          <%= form_for @post, html: { class: "edit-profile__form" } do |f| %>
+          <div class="form__row">
+              <%= f.label :description, class: "form__label" %>
+              <%= f.text_area :description %>
+          </div>
+          <%= f.submit %>
+          <% end %>
+      </form>
+  </div>
+</main>
