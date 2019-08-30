@@ -8,6 +8,10 @@
       </header>
           <%= form_for @post, html: { class: "edit-profile__form" } do |f| %>
           <div class="form__row">
+                <%= f.label :image, class: "form__label" %>
+                <%= f.file_field :image %>
+            </div>
+          <div class="form__row">
               <%= f.label :description, class: "form__label" %>
               <%= f.text_area :description %>
           </div>

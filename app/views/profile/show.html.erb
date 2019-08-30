@@ -1,13 +1,15 @@
 <main id="profile">
     <header class="profile__header">
         <div class="profile__column">
-            <%= image_tag 'avatar.jpg' %>
+            
+        <%= image_tag @user.avatar.variant(resize_to_limit: [150, 150]) %>
         </div>
         <div class="profile__column">
             <div class="profile__title">
                 <h3 class="profile__username"><%= @user.username %></h3>
                 <% if (current_user.id == @user.id) %>
                     <%= link_to  "Edit Profile", edit_user_registration_path %>
+                    <%= link_to  "New Post", new_post_path %>
                 <% end %>
                 <i class="fa fa-cog fa-lg"></i>
             </div>
@@ -32,7 +34,7 @@
     <section class="profile__photos">
         <% @posts.each do |post| %>
             <div class="profile__photo">
-                <%= image_tag 'feedPhoto.jpg' %>
+                <%= image_tag post.image %>
                 <div class="profile__photo-overlay">
                     <span class="overlay__item">
                         <i class="fa fa-heart"></i>

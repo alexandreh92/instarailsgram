@@ -6,7 +6,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'devise'
 # font-awesome-rails provides the Font-Awesome web fonts and stylesheets as a Rails engine for use with the asset pipeline.
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
-
+# High-level image processing helper methods with libvips and ImageMagick/GraphicsMagick
+gem 'image_processing', '~> 1.2'
 ###
 
 

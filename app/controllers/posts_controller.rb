@@ -46,7 +46,7 @@ class PostsController < SiteController
   end
 
   def post_params
-    params.require(:post).permit(:description)
+    params.require(:post).permit(:description, :image)
   end
 
 end

@@ -20,6 +20,11 @@ sudo apt-get update && sudo apt-get install yarn
 sudo apt-get install graphviz
 ```
 
+- [ImageMagick](https://imagemagick.org)
+```
+sudo apt-get install imagemagick
+```
+
 ## Configuration
 ```
 bundle install
