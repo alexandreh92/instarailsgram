@@ -9,6 +9,7 @@
     <input type="text" placeholder="Search">
   </div>
   <div class="navigation__column">
+   <% if user_signed_in? %>
     <ul class="navigations__links">
       <li class="navigation__list-item">
         <a href="explore.html" class="navigation__link">
@@ -26,5 +27,6 @@
         <% end %>
       </li>
     </ul>
+      <% end %>
   </div>
 </nav>

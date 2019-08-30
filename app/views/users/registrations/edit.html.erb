@@ -2,7 +2,11 @@
   <div class="edit-profile__container">
     <header class="edit-profile__header">
       <div class="edit-profile__avatar-container">
-          <%= image_tag(current_user.avatar) %>
+      <% if current_user.avatar.attached? %>
+        <%= image_tag(current_user.avatar) %>
+      <% else %>
+        <%= image_tag 'blank-avatar.png' %>
+      <% end %>
       </div>
       <h4 class="edit-profile__username"><%= @user.username %></h4>
     </header>

@@ -1,51 +1,54 @@
 <main id="profile">
-    <header class="profile__header">
-        <div class="profile__column">
-            
+  <header class="profile__header">
+    <div class="profile__column">
+      <% if @user.avatar.attached? %>
         <%= image_tag @user.avatar.variant(resize_to_limit: [150, 150]) %>
-        </div>
-        <div class="profile__column">
-            <div class="profile__title">
-                <h3 class="profile__username"><%= @user.username %></h3>
-                <% if (current_user.id == @user.id) %>
-                    <%= link_to  "Edit Profile", edit_user_registration_path %>
-                    <%= link_to  "New Post", new_post_path %>
-                <% end %>
-                <i class="fa fa-cog fa-lg"></i>
-            </div>
-            <ul class="profile__stats">
-                <li class="profile__stat">
-                    <span class="stat__number"><%= @user.posts.count %></span> posts
-                </li>
-                <li class="profile__stat">
-                    <span class="stat__number">1234</span> followers
-                </li>
-                <li class="profile__stat">
-                    <span class="stat__number">36</span> following
-                </li>
-            </ul>
-            <p class="profile__bio">
-                <span class="profile__full-name">
-                    <%= @user.name %>
-                </span> <%= @user.description %>
-            </p>
-        </div>
-    </header>
-    <section class="profile__photos">
-        <% @posts.each do |post| %>
-            <div class="profile__photo">
-                <%= image_tag post.image %>
-                <div class="profile__photo-overlay">
-                    <span class="overlay__item">
-                        <i class="fa fa-heart"></i>
-                        486
-                    </span>
-                    <span class="overlay__item">
-                        <i class="fa fa-comment"></i>
-                        344
-                    </span>
-                </div>
-            </div>
+      <% else %>
+        <%= image_tag 'blank-avatar.png' %>
+      <% end %>
+    </div>
+    <div class="profile__column">
+      <div class="profile__title">
+        <h3 class="profile__username"><%= @user.username %></h3>
+        <% if (current_user.id == @user.id) %>
+          <%= link_to  "Edit Profile", edit_user_registration_path %>
+          <%= link_to  "New Post", new_post_path %>
         <% end %>
-    </section>
+        <i class="fa fa-cog fa-lg"></i>
+      </div>
+      <ul class="profile__stats">
+        <li class="profile__stat">
+          <span class="stat__number"><%= @user.posts.count %></span> posts
+        </li>
+        <li class="profile__stat">
+          <span class="stat__number">1234</span> followers
+        </li>
+        <li class="profile__stat">
+          <span class="stat__number">36</span> following
+        </li>
+      </ul>
+      <p class="profile__bio">
+        <span class="profile__full-name">
+          <%= @user.name %>
+        </span> <%= @user.description %>
+      </p>
+    </div>
+  </header>
+  <section class="profile__photos">
+    <% @posts.each do |post| %>
+      <div class="profile__photo">
+        <%= image_tag post.image %>
+        <div class="profile__photo-overlay">
+          <span class="overlay__item">
+            <i class="fa fa-heart"></i>
+            486
+          </span>
+          <span class="overlay__item">
+            <i class="fa fa-comment"></i>
+            344
+          </span>
+        </div>
+      </div>
+    <% end %>
+  </section>
 </main>
