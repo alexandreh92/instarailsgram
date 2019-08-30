@@ -85,6 +85,7 @@
 
 .profile__bio .profile__full-name {
   font-weight: 600;
+  display: block;
 }
 
 .profile__bio a {

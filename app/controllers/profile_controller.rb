@@ -3,7 +3,7 @@ class ProfileController < SiteController
 
 
   def show
-
+    @posts = Post.where(user_id: params[:id])
   end
 
   private
