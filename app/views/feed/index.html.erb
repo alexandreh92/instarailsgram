@@ -27,22 +27,38 @@
           <li class="photo__comment">
             <span class="photo__comment-author"><%= post.user.username %></span> <%= post.description %>
           </li>
-          <li class="photo__comment">
-            <span class="photo__comment-author">serranoarevalo</span> love this!
-          </li>
-          <li class="photo__comment">
-            <span class="photo__comment-author">serranoarevalo</span> love this!
-          </li>
-          <li class="photo__comment">
-            <span class="photo__comment-author">serranoarevalo</span> love this!
-          </li>
+          <div id=<%= "comments#{post.id}" %>>
+              <% post.comments.each do |comment| %>
+                <!--<%#= render partial: "comments", locals: {post: post, comment: comment} %>-->
+                <li class="photo__comment">
+                    <span class="photo__comment-author"><%= post.user.username %></span> <%= comment.description %>
+                  </li>
+              <% end %>
+          </div>
         </ul>
         <span class="photo__time-ago">2 hours ago</span>
         <div class="photo__add-comment-container">
-          <textarea name="comment" placeholder="Add a comment..."></textarea>
+          <%= form_for post.comments.build, html: {class: "teste", remote: true} do |f| %>
+            <%= f.text_area :description, placeholder: "Add a comment...", class: "new-comment" %>
+            <%= f.hidden_field :post_id %>
+          <% end %>
           <i class="fa fa-ellipsis-h"></i>
         </div>
       </div>
     </div>
   <% end %>
 </main>
+<script>
+    jQuery('.new-comment').keypress(function(e) {
+      if (e.keyCode == 13 && !e.shiftKey) {
+          e.preventDefault();
+          var frm = $(this).closest("form");
+          jQuery.ajax({
+              type: "POST",
+              url: frm.attr("action"),
+              data: frm.serialize(),
+          });
+          $(this).closest('textarea').val('')
+      }
+  });
+</script>
