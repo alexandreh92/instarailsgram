@@ -14,7 +14,12 @@
           <%= link_to  "Edit Profile", edit_user_registration_path %>
           <%= link_to  "New Post", new_post_path %>
         <% end %>
-        <i class="fa fa-cog fa-lg"></i>
+        <i class="fa fa-cog fa-lg dropdown"></i>
+        <div class="dropdown-content" id="myDropdown">
+    <a href="#">Link 1</a>
+    <a href="#">Link 2</a>
+    <a href="#">Link 3</a>
+  </div>
       </div>
       <ul class="profile__stats">
         <li class="profile__stat">
@@ -52,3 +57,18 @@
     <% end %>
   </section>
 </main>
+<script>
+$(document).on('click', '.dropdown', function(){
+  document.getElementById("myDropdown").classList.toggle("show");
+});
+
+$(window).onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("myDropdown");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
+
+</script>

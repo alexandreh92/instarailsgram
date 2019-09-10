@@ -8,7 +8,7 @@
   </div>
 </main>
 <script>
-  jQuery('.new-comment').keypress(function (e) {
+  $(document).on('keypress', '.new-comment', (function (e) {
     if (e.keyCode == 13 && !e.shiftKey) {
       e.preventDefault();
       var frm = $(this).closest("form");
@@ -20,5 +20,5 @@
       });
       $(this).closest('textarea').val('')
     }
-  });
+  }));
 </script>

@@ -1,11 +1,11 @@
 <% if @f.present? %>
-$(<%= "comments#{@post.id}" %>).append("<%= j render(partial: 'feed/comments') %>");
-<% end %>
-
-$('#posts').append('<%= j render @posts %>');
-<% if @posts.next_page %>
-  $('.pagination').replaceWith('<%= j will_paginate @posts %>');
+  $(<%= "comments#{@post.id}" %>).append("<%= j render(partial: 'feed/comments') %>");
 <% else %>
-  $(window).off('scroll');
-  $('.pagination').remove();
+  $('#posts').append('<%= j render @posts %>');
+  <% if @posts.next_page %>
+    $('.pagination').replaceWith('<%= j will_paginate @posts %>');
+  <% else %>
+    $(window).off('scroll');
+    $('.pagination').remove();
+  <% end %>
 <% end %>
