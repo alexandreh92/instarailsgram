@@ -1,65 +1,24 @@
 <main id="feed">
-  <% @posts.each do |post| %>
-    <div class="photo">
-      <header class="photo__header">
-        <% if post.user.avatar.attached? %>
-          <%= image_tag post.user.avatar, class: "photo__avatar" %>
-        <% else %>
-          <%= image_tag 'blank-avatar.png', class: "photo__avatar" %>
-        <% end %>
-        <div class="photo__user-info">
-          <span class="photo__author"><%= post.user.username %></span>
-          <span class="photo__location">Bestechung</span>
-        </div>
-      </header>
-      <%= image_tag post.image %>
-      <div class="photo__info">
-        <div class="photo__actions">
-          <span class="photo__action">
-            <i class="fa fa-heart-o fa-lg"></i>
-          </span>
-          <span class="photo__action">
-            <i class="fa fa-comment-o fa-lg"></i>
-          </span>
-        </div>
-        <span class="photo__likes">45 likes</span>
-        <ul class="photo__comments">
-          <li class="photo__comment">
-            <span class="photo__comment-author"><%= post.user.username %></span> <%= post.description %>
-          </li>
-          <div id=<%= "comments#{post.id}" %>>
-              <% post.comments.each do |comment| %>
-                <!--<%#= render partial: "comments", locals: {post: post, comment: comment} %>-->
-                <li class="photo__comment">
-                    <span class="photo__comment-author"><%= post.user.username %></span> <%= comment.description %>
-                  </li>
-              <% end %>
-          </div>
-        </ul>
-        <span class="photo__time-ago">2 hours ago</span>
-        <div class="photo__add-comment-container">
-          <%= form_for post.comments.build, html: {class: "teste", remote: true} do |f| %>
-            <%= f.text_area :description, placeholder: "Add a comment...", class: "new-comment" %>
-            <%= f.hidden_field :post_id %>
-          <% end %>
-          <i class="fa fa-ellipsis-h"></i>
-        </div>
-      </div>
-    </div>
-  <% end %>
-  <%= will_paginate @posts %>
+  <div id="posts">
+    <%= render @posts %>
+  </div>
+
+  <div id="infinite-scrolling">
+    <%= will_paginate @posts %>
+  </div>
 </main>
 <script>
-    jQuery('.new-comment').keypress(function(e) {
-      if (e.keyCode == 13 && !e.shiftKey) {
-          e.preventDefault();
-          var frm = $(this).closest("form");
-          jQuery.ajax({
-              type: "POST",
-              url: frm.attr("action"),
-              data: frm.serialize(),
-          });
-          $(this).closest('textarea').val('')
-      }
+  jQuery('.new-comment').keypress(function (e) {
+    if (e.keyCode == 13 && !e.shiftKey) {
+      e.preventDefault();
+      var frm = $(this).closest("form");
+      jQuery.ajax({
+        type: "POST",
+        beforeSend: function (xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')) },
+        url: frm.attr("action"),
+        data: frm.serialize(),
+      });
+      $(this).closest('textarea').val('')
+    }
   });
 </script>

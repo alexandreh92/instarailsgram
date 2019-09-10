@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
+        @f = true
         format.js { render 'feed/index' }
       else
         flash.now[:danger] = "error"
