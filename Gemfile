@@ -8,6 +8,8 @@ gem 'devise'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
 # High-level image processing helper methods with libvips and ImageMagick/GraphicsMagick
 gem 'image_processing', '~> 1.2'
+# Pagination library for Rails, Sinatra, Merb, DataMapper, and more
+gem 'will_paginate', '~> 3.1.0'
 ###
 
 
