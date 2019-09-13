@@ -1,32 +1,37 @@
 <nav class="navigation">
-  <div class="navigation__column">
-    <%= link_to feed_path do %>
-      <%= image_tag 'logo.png' %>
-    <% end %>
-  </div>
-  <div class="navigation__column">
-    <i class="fa fa-search"></i>
-    <input type="text" placeholder="Search">
-  </div>
-  <div class="navigation__column">
-   <% if user_signed_in? %>
-    <ul class="navigations__links">
-      <li class="navigation__list-item">
-        <a href="explore.html" class="navigation__link">
-          <i class="fa fa-compass fa-lg"></i>
-        </a>
-      </li>
-      <li class="navigation__list-item">
-        <a href="#" class="navigation__link">
-          <i class="fa fa-heart-o fa-lg"></i>
-        </a>
-      </li>
-      <li class="navigation__list-item">
-        <%= link_to(profile_path(current_user), html_options = {class:"navigation__link"}) do %>
-          <i class="fa fa-user-o fa-lg"></i>
-        <% end %>
-      </li>
-    </ul>
-      <% end %>
-  </div>
+	<div class="navigation__column">
+		<%= link_to feed_path do %>
+			<%= image_tag 'logo.png' %>
+		<% end %>
+	</div>
+	<div class="navigation__column">
+		<i class="fa fa-search"></i>
+		<input type="text" placeholder="Search">
+	</div>
+	<div class="navigation__column">
+		<% if user_signed_in? %>
+			<ul class="navigations__links">
+				<li class="navigation__list-item">
+					<%= link_to(new_post_path, html_options = {class:"navigation__link"}) do %>
+						<i class="fa fa-camera fa-lg"></i>
+					<% end %>
+				</li>
+				<li class="navigation__list-item">
+					<a href="explore.html" class="navigation__link">
+						<i class="fa fa-compass fa-lg"></i>
+					</a>
+				</li>
+				<li class="navigation__list-item">
+					<a href="#" class="navigation__link">
+						<i class="fa fa-heart-o fa-lg"></i>
+					</a>
+				</li>
+				<li class="navigation__list-item">
+					<%= link_to(profile_path(current_user), html_options = {class:"navigation__link"}) do %>
+						<i class="fa fa-user-o fa-lg"></i>
+					<% end %>
+				</li>
+			</ul>
+		<% end %>
+	</div>
 </nav>

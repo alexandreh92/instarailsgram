@@ -1,74 +1,57 @@
 <main id="profile">
-  <header class="profile__header">
-    <div class="profile__column">
-      <% if @user.avatar.attached? %>
-        <%= image_tag @user.avatar.variant(resize_to_limit: [150, 150]) %>
-      <% else %>
-        <%= image_tag 'blank-avatar.png' %>
-      <% end %>
-    </div>
-    <div class="profile__column">
-      <div class="profile__title">
-        <h3 class="profile__username"><%= @user.username %></h3>
-        <% if (current_user.id == @user.id) %>
-          <%= link_to  "Edit Profile", edit_user_registration_path %>
-          <%= link_to  "New Post", new_post_path %>
-        <% end %>
-        <i class="fa fa-cog fa-lg dropdown"></i>
-        <div class="dropdown-content" id="myDropdown">
-    <a href="#">Link 1</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
-  </div>
-      </div>
-      <ul class="profile__stats">
-        <li class="profile__stat">
-          <span class="stat__number"><%= @user.posts.count %></span> posts
-        </li>
-        <li class="profile__stat">
-          <span class="stat__number">1234</span> followers
-        </li>
-        <li class="profile__stat">
-          <span class="stat__number">36</span> following
-        </li>
-      </ul>
-      <p class="profile__bio">
-        <span class="profile__full-name">
-          <%= @user.name %>
-        </span> <%= @user.description %>
-      </p>
-    </div>
-  </header>
-  <section class="profile__photos">
-    <% @posts.each do |post| %>
-      <div class="profile__photo">
-        <%= image_tag post.image %>
-        <div class="profile__photo-overlay">
-          <span class="overlay__item">
-            <i class="fa fa-heart"></i>
-            486
-          </span>
-          <span class="overlay__item">
-            <i class="fa fa-comment"></i>
-            344
-          </span>
-        </div>
-      </div>
-    <% end %>
-  </section>
+	<header class="profile__header">
+		<div class="profile__column">
+			<% if @user.avatar.attached? %>
+				<%= image_tag @user.avatar.variant(combine_options: { resize: "150x150", background: 'black', extent: "150x150>", gravity: "center", crop: '150x150+0+0'}) %>
+			<% else %>
+				<%= image_tag 'blank-avatar.png' %>
+			<% end %>
+		</div>
+		<div class="profile__column">
+			<div class="profile__title">
+				<h3 class="profile__username"><%= @user.username %></h3>
+				<% if (current_user.id == @user.id) %>
+					<%= link_to "Edit Profile", edit_user_registration_path %>
+				<% end %>
+				<i class="fa fa-cog fa-lg dropdown">
+					<div class="dropdown-content">
+						<%= link_to 'Logout', destroy_session_path(:user), :method => :delete %>
+					</div>
+				</i>
+			</div>
+			<ul class="profile__stats">
+				<li class="profile__stat">
+					<span class="stat__number"><%= @user.posts.count %></span> posts
+				</li>
+				<li class="profile__stat">
+					<span class="stat__number">1234</span> followers
+				</li>
+				<li class="profile__stat">
+					<span class="stat__number">36</span> following
+				</li>
+			</ul>
+			<p class="profile__bio">
+				<span class="profile__full-name">
+					<%= @user.name %>
+				</span> <%= @user.description %>
+			</p>
+		</div>
+	</header>
+	<section class="profile__photos">
+		<% @posts.each do |post| %>
+			<div class="profile__photo">
+				<%= image_tag post.image.variant(combine_options: { resize: "1080x1080", background: 'black', extent: "1080x1080>", gravity: "center", crop: '1080x1080+0+0'}) %>
+				<div class="profile__photo-overlay">
+					<span class="overlay__item">
+						<i class="fa fa-heart"></i>
+						486
+					</span>
+					<span class="overlay__item">
+						<i class="fa fa-comment"></i>
+						344
+					</span>
+				</div>
+			</div>
+		<% end %>
+	</section>
 </main>
-<script>
-$(document).on('click', '.dropdown', function(){
-  document.getElementById("myDropdown").classList.toggle("show");
-});
-
-$(window).onclick = function(e) {
-  if (!e.target.matches('.dropbtn')) {
-  var myDropdown = document.getElementById("myDropdown");
-    if (myDropdown.classList.contains('show')) {
-      myDropdown.classList.remove('show');
-    }
-  }
-}
-
-</script>

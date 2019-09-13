@@ -1,26 +1,31 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+<main id="login">
+	<div class="login__column">
+		<%= image_tag 'phoneImage.png', class: "login__phone" %>
+	</div>
+	<div class="login__column">
+		<div class="login__box">
+			<%= image_tag 'loginLogo.png', class: "login__logo" %>
+			<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "login__form" }) do |f| %>
+				<%= f.text_field :email, placeholder: "Username", class: "form__input", style: "margin-bottom: '10px'" %>
+				<%= f.password_field :password, placeholder: "Password", class: "form__input" %>
+				<%= f.submit "Log in" %>
+			<% end %>
+			<span class="login__divider">or</span>
+			<a href="#" class="login__link">
+				<i class="fa fa-money"></i>
+				Log in with Facebook
+			</a>
+			<a href="#" class="login__link login__link--small">Forgot password</a>
+		</div>
+		<div class="login__box">
+			<span>Don't have an account?</span> <a href="#">Sign up</a>
+		</div>
+		<div class="login__box--transparent">
+			<span>Get the app.</span>
+			<div class="login__appstores">
+				<%= image_tag 'ios.png', class: "login__appstore" %>
+				<%= image_tag 'android.png', class: "login__appstore" %>
+			</div>
+		</div>
+	</div>
+</main>

@@ -53,6 +53,7 @@
 
 .login__form input {
   display: block;
+  margin-top: 5px;
   width: 100%;
   box-sizing: border-box;
   padding: 7px;

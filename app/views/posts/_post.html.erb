@@ -1,7 +1,7 @@
 <div class="photo">
     <header class="photo__header">
       <% if post.user.avatar.attached? %>
-      <%= image_tag post.user.avatar, class: "photo__avatar" %>
+      <%= image_tag post.user.avatar.variant(combine_options: { resize: "150x150", background: 'black', extent: "150x150>", gravity: "center", crop: '150x150+0+0'}), class: "photo__avatar" %>
       <% else %>
       <%= image_tag 'blank-avatar.png', class: "photo__avatar" %>
       <% end %>
@@ -10,7 +10,7 @@
         <span class="photo__location">Bestechung</span>
       </div>
     </header>
-    <%= image_tag post.image %>
+    <%= image_tag post.image.variant(combine_options: { resize: "1080x1080", background: 'black', extent: "1080x1080>", gravity: "center", crop: '1080x1080+0+0'}) %>
     <div class="photo__info">
       <div class="photo__actions">
         <span class="photo__action">

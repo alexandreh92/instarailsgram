@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:comment][:post_id])
@@ -9,15 +11,14 @@ class CommentsController < ApplicationController
         @f = true
         format.js { render 'feed/index' }
       else
-        flash.now[:danger] = "error"
+        flash.now[:danger] = 'error'
       end
     end
   end
 
-  private 
+  private
 
   def comment_params
     params.require(:comment).permit(:post_id, :description)
   end
-
 end

@@ -3,7 +3,7 @@
     <header class="edit-profile__header">
       <div class="edit-profile__avatar-container">
       <% if current_user.avatar.attached? %>
-        <%= image_tag(current_user.avatar) %>
+        <%= image_tag(current_user.avatar.variant(combine_options: { resize: "150x150", background: 'black', extent: "150x150>", gravity: "center", crop: '150x150+0+0'})) %>
       <% else %>
         <%= image_tag 'blank-avatar.png' %>
       <% end %>
@@ -27,10 +27,6 @@
       <div class="form__row">
         <%= f.label :password, class: "form__label" %>
         <%= f.password_field :password, class: "form__input" %>
-      </div>
-      <div class="form__row">
-        <%= f.label :password_confirmation, class: "form__label" %>
-        <%= f.password_field :password_confirmation, class: "form__input" %>
       </div>
       <div class="form__row">
         <%= f.label :current_password, class: "form__label" %>

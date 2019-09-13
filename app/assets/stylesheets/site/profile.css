@@ -67,10 +67,6 @@
   transition: transform 1s ease-in;
 }
 
-.profile__title i:hover {
-  transform: rotate(2turn);
-}
-
 .profile__column .profile__stats {
   margin-bottom: 30px;
 }
